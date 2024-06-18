@@ -11,7 +11,7 @@
     "grpc:generate": "mkdir -p ./protos && protoc -I ./pb  --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=esModuleInterop=true --ts_proto_out=./protos --ts_proto_opt=outputServices=grpc-js demo.proto"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.10.8",
+    "@grpc/grpc-js": "1.10.9",
     "@openfeature/flagd-provider": "0.13.0",
     "@openfeature/flagd-web-provider": "0.7.1",
     "@openfeature/react-sdk": "0.4.0",
@@ -39,7 +39,7 @@
     "currency-symbol-map": "5.1.0",
     "dotenv": "16.3.1",
     "dotenv-expand": "10.0.0",
-    "next": "13.5.1",
+    "next": "14.1.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "sharp": "0.33.3",
@@ -55,7 +55,7 @@
     "@types/uuid": "9.0.7",
     "@typescript-eslint/eslint-plugin": "6.10.0",
     "@typescript-eslint/parser": "6.10.0",
-    "cypress": "10.11.0",
+    "cypress": "13.11.0",
     "eslint": "8.53.0",
     "eslint-config-next": "13.5.6",
     "eslint-plugin-react": "7.33.2",
