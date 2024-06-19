@@ -1,5 +1,6 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
+// Modified by Embrace
 
 import ProductCard from '../ProductCard';
 import * as S from './ProductList.styled';
