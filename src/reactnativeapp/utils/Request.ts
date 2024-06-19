@@ -4,6 +4,7 @@
 
 import DeviceInfo from 'react-native-device-info'
 import {Platform} from 'react-native';
+import getLocalhost from '@/utils/Localhost';
 
 interface IRequestParams {
   url: string;
@@ -22,12 +23,8 @@ const request = async <T>({
     'content-type': 'application/json',
   },
 }: IRequestParams): Promise<T> => {
-  // The Android emulator has a special lookback for localhost
-  const isEmulator = await DeviceInfo.isEmulator();
-  const API_URL = Platform.OS === "android" && isEmulator  ?
-    "http://10.0.2.2:8080"
-    : "http://127.0.0.1:8080"
-
+  const localhost = await getLocalhost();
+  const API_URL = `http://${localhost}:8080`;
   const requestURL = `${API_URL}${url}?${new URLSearchParams(queryParams).toString()}`;
   const requestBody = body ? JSON.stringify(body) : undefined;
   const response = await fetch(requestURL, {
