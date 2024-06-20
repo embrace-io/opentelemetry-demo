@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // Modified by Embrace
 
-import DeviceInfo from 'react-native-device-info'
-import {Platform} from 'react-native';
 import getLocalhost from '@/utils/Localhost';
 
 interface IRequestParams {
