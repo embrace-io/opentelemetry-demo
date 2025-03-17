@@ -1,0 +1,13 @@
+{
+    "app_id": "EMBRACE_ANDROID_APP_ID",
+    "api_token": "EMBRACE_API_TOKEN",
+    "sdk_config": {
+        "app_framework": "react_native",
+        "networking": {
+            "enable_network_span_forwarding": true,
+            "disabled_url_patterns": [
+                "grafana.net"
+            ]
+        }
+    }
+}

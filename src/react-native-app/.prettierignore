@@ -1,1 +1,5 @@
 expo-env.d.ts
+node_modules
+build
+dist
+Pods

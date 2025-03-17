@@ -1,6 +1,9 @@
 package io.opentelemetry.reactnativeapp
 
 import android.app.Application
+import io.embrace.android.embracesdk.Embrace
+import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter
+import io.opentelemetry.exporter.otlp.http.logs.OtlpHttpLogRecordExporter
 import android.content.res.Configuration
 
 import com.facebook.react.PackageList
@@ -40,6 +43,21 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
+
+    // Preparing Span Exporter config with the minimum required
+    val spanExporter = OtlpHttpSpanExporter.builder()
+                                .setEndpoint("GRAFANA_ENDPOINT/v1/traces")
+                                .addHeader("Authorization", "Basic GRAFANA_API_TOKEN")
+
+    // Preparing Log Exporter config with the minimum required
+    val logExporter = OtlpHttpLogRecordExporter.builder()
+                                .setEndpoint("GRAFANA_ENDPOINT/v1/logs")
+                                .addHeader("Authorization", "Basic GRAFANA_API_TOKEN")
+
+    Embrace.getInstance().addSpanExporter(spanExporter.build())
+    Embrace.getInstance().addLogRecordExporter(logExporter.build())
+
+    Embrace.getInstance().start(this)
     SoLoader.init(this, false)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.

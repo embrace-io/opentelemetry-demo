@@ -6,6 +6,24 @@ This was created using
 Content was taken from the web app example in src/frontend and modified to work
 in a React Native environment.
 
+## Embrace setup
+
+This React Native example is a fork from the [OpenTelemetry Demo](https://github.com/open-telemetry/opentelemetry-demo)
+to demonstrate how to instrument the app using Embrace. To get started [create an account](https://dash.embrace.io/) along
+with a React Native Android and iOS app. Once created find and replace the following tokens in this repo with the values
+you were given: `EMBRACE_ANDROID_APP_ID`, `EMBRACE_IOS_APP_ID`, `EMBRACE_API_TOKEN`
+
+For more details, including how to proceed without having to create an Embrace account please review the full
+[documentation](https://embrace.io/docs/react-native/).
+
+For exporting to a Grafana Cloud account:
+1. [Create an account](https://grafana.com/auth/sign-up)
+2. [Sign in to the Grafana Cloud Portal](https://grafana.com/auth/sign-in/)
+3. Click Details on your stack, find the OpenTelemetry tile and click Configure
+4. Go to Connections->Add new connection->OpenTelemetry (OTLP)
+5. Copy the OTLP endpoint and Token for Basic Auth (note that this is base64(instance ID:API token) not simply the API token)
+6. Find and replace the following tokens in this repo with the values you were given: `GRAFANA_ENDPOINT`, `GRAFANA_API_TOKEN`
+
 ## Get started
 
 Start the OpenTelemetry demo from the root of this repo:

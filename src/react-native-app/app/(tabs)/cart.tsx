@@ -3,26 +3,31 @@
 /**
  * Copied with modification from src/frontend/components/Cart/CartDetail.tsx
  */
-import { router } from "expo-router";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import { Pressable, StyleSheet } from "react-native";
-import { useCart } from "@/providers/Cart.provider";
+// Modified by Embrace 2025
+import {router} from "expo-router";
+import {ThemedView} from "@/components/ThemedView";
+import {ThemedText} from "@/components/ThemedText";
+import {Pressable, StyleSheet} from "react-native";
+import {useCart} from "@/providers/Cart.provider";
 import CheckoutForm from "@/components/CheckoutForm";
 import EmptyCart from "@/components/EmptyCart";
-import { ThemedScrollView } from "@/components/ThemedScrollView";
-import { useCallback, useMemo } from "react";
-import { IFormData } from "@/components/CheckoutForm/CheckoutForm";
+import {ThemedScrollView} from "@/components/ThemedScrollView";
+import {useCallback, useMemo} from "react";
+import {IFormData} from "@/components/CheckoutForm/CheckoutForm";
 import Toast from "react-native-toast-message";
 import SessionGateway from "@/gateways/Session.gateway";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import {useThemeColor} from "@/hooks/useThemeColor";
+
+const emptyCart = () => {
+  // Intentionally throwing an error to demonstrate how crashes are captured by Embrace
+  throw new ReferenceError("Empty cart Unhandled JS Exception");
+};
 
 export default function Cart() {
   const tint = useThemeColor({}, "tint");
   const styles = useMemo(() => getStyles(tint), [tint]);
   const {
-    cart: { items },
-    emptyCart,
+    cart: {items},
     placeOrder,
   } = useCart();
 
@@ -33,7 +38,7 @@ export default function Cart() {
       position: "bottom",
       text1: "Your cart was emptied",
     });
-  }, [emptyCart]);
+  }, []);
 
   const onPlaceOrder = useCallback(
     async ({
@@ -48,7 +53,7 @@ export default function Cart() {
       creditCardExpirationYear,
       creditCardNumber,
     }: IFormData) => {
-      const { userId } = await SessionGateway.getSession();
+      const {userId} = await SessionGateway.getSession();
       await placeOrder({
         userId,
         email,
@@ -89,7 +94,7 @@ export default function Cart() {
     <ThemedView style={styles.container}>
       <ThemedView>
         <ThemedScrollView>
-          {items.map((item) => (
+          {items.map(item => (
             <ThemedView key={item.productId} style={styles.cartItem}>
               <ThemedText>{item.product.name}</ThemedText>
               <ThemedText style={styles.bold}>{item.quantity}</ThemedText>
